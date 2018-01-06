@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>freemakerTest</title>
+</head>
+<body>
+#foreach($co in $colleges)
+$!{co.coName}<br>
+#end
+#foreach($cm in $coj.entrySet())
+$!{cm.key.coName} has
+#foreach($mj in $cm.value)
+$!{mj.mName}
+#end
+
+#end
+
+
+</body>
+</body>
+</html>

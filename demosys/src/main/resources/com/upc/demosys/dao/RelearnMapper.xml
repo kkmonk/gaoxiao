@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.upc.demosys.dao.RelearnMapper" >
+  <resultMap id="BaseResultMap" type="com.upc.demosys.model.Relearn" >
+    <constructor >
+      <arg column="sid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="re_date" jdbcType="DATE" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.upc.demosys.model.Relearn" >
+    insert into relearn (sid, cid, re_date
+      )
+    values (#{sid,jdbcType=VARCHAR}, #{cid,jdbcType=VARCHAR}, #{reDate,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.upc.demosys.model.Relearn" >
+    insert into relearn
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="reDate != null" >
+        re_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=VARCHAR},
+      </if>
+      <if test="reDate != null" >
+        #{reDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+</mapper>

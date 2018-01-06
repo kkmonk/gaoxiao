@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.upc.demosys.dao.StudentMapper" >
+  <resultMap id="BaseResultMap" type="com.upc.demosys.model.Student" >
+    <constructor >
+      <idArg column="sid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cl_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="co_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="m_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="password" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sex" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="classname" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="birthdate" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="birthplace" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="minzu" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="postcode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="homeaddr" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="intime" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="lenofsc" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="major" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="college" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sid, cl_id, co_id, m_id, password, name, sex, classname, birthdate, birthplace, minzu, 
+    postcode, homeaddr, intime, id, lenofsc, major, college
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from student
+    where sid = #{sid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from student
+    where sid = #{sid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.upc.demosys.model.Student" >
+    insert into student (sid, cl_id, co_id, 
+      m_id, password, name, 
+      sex, classname, birthdate, 
+      birthplace, minzu, postcode, 
+      homeaddr, intime, id, 
+      lenofsc, major, college
+      )
+    values (#{sid,jdbcType=VARCHAR}, #{clId,jdbcType=INTEGER}, #{coId,jdbcType=VARCHAR}, 
+      #{mId,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=CHAR}, #{classname,jdbcType=VARCHAR}, #{birthdate,jdbcType=DATE}, 
+      #{birthplace,jdbcType=VARCHAR}, #{minzu,jdbcType=VARCHAR}, #{postcode,jdbcType=VARCHAR}, 
+      #{homeaddr,jdbcType=VARCHAR}, #{intime,jdbcType=DATE}, #{id,jdbcType=VARCHAR}, 
+      #{lenofsc,jdbcType=INTEGER}, #{major,jdbcType=VARCHAR}, #{college,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.upc.demosys.model.Student" >
+    insert into student
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="clId != null" >
+        cl_id,
+      </if>
+      <if test="coId != null" >
+        co_id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="classname != null" >
+        classname,
+      </if>
+      <if test="birthdate != null" >
+        birthdate,
+      </if>
+      <if test="birthplace != null" >
+        birthplace,
+      </if>
+      <if test="minzu != null" >
+        minzu,
+      </if>
+      <if test="postcode != null" >
+        postcode,
+      </if>
+      <if test="homeaddr != null" >
+        homeaddr,
+      </if>
+      <if test="intime != null" >
+        intime,
+      </if>
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="lenofsc != null" >
+        lenofsc,
+      </if>
+      <if test="major != null" >
+        major,
+      </if>
+      <if test="college != null" >
+        college,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="clId != null" >
+        #{clId,jdbcType=INTEGER},
+      </if>
+      <if test="coId != null" >
+        #{coId,jdbcType=VARCHAR},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="classname != null" >
+        #{classname,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdate != null" >
+        #{birthdate,jdbcType=DATE},
+      </if>
+      <if test="birthplace != null" >
+        #{birthplace,jdbcType=VARCHAR},
+      </if>
+      <if test="minzu != null" >
+        #{minzu,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null" >
+        #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="homeaddr != null" >
+        #{homeaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="intime != null" >
+        #{intime,jdbcType=DATE},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="lenofsc != null" >
+        #{lenofsc,jdbcType=INTEGER},
+      </if>
+      <if test="major != null" >
+        #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="college != null" >
+        #{college,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.upc.demosys.model.Student" >
+    update student
+    <set >
+      <if test="clId != null" >
+        cl_id = #{clId,jdbcType=INTEGER},
+      </if>
+      <if test="coId != null" >
+        co_id = #{coId,jdbcType=VARCHAR},
+      </if>
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="classname != null" >
+        classname = #{classname,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdate != null" >
+        birthdate = #{birthdate,jdbcType=DATE},
+      </if>
+      <if test="birthplace != null" >
+        birthplace = #{birthplace,jdbcType=VARCHAR},
+      </if>
+      <if test="minzu != null" >
+        minzu = #{minzu,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null" >
+        postcode = #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="homeaddr != null" >
+        homeaddr = #{homeaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="intime != null" >
+        intime = #{intime,jdbcType=DATE},
+      </if>
+      <if test="id != null" >
+        id = #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="lenofsc != null" >
+        lenofsc = #{lenofsc,jdbcType=INTEGER},
+      </if>
+      <if test="major != null" >
+        major = #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="college != null" >
+        college = #{college,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sid = #{sid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.upc.demosys.model.Student" >
+    update student
+    set cl_id = #{clId,jdbcType=INTEGER},
+      co_id = #{coId,jdbcType=VARCHAR},
+      m_id = #{mId,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      classname = #{classname,jdbcType=VARCHAR},
+      birthdate = #{birthdate,jdbcType=DATE},
+      birthplace = #{birthplace,jdbcType=VARCHAR},
+      minzu = #{minzu,jdbcType=VARCHAR},
+      postcode = #{postcode,jdbcType=VARCHAR},
+      homeaddr = #{homeaddr,jdbcType=VARCHAR},
+      intime = #{intime,jdbcType=DATE},
+      id = #{id,jdbcType=VARCHAR},
+      lenofsc = #{lenofsc,jdbcType=INTEGER},
+      major = #{major,jdbcType=VARCHAR},
+      college = #{college,jdbcType=VARCHAR}
+    where sid = #{sid,jdbcType=VARCHAR}
+  </update>
+</mapper>

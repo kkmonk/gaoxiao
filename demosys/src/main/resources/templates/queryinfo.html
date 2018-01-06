@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/select.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.idTabs.min.js"></script>
+    <script type="text/javascript" src="js/select-ui.min.js"></script>
+    <script type="text/javascript" src="editor/kindeditor.js"></script>
+
+    <script type="text/javascript">
+        KE.show({
+            id: 'content7',
+            cssPath: './index.css'
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function (e) {
+            $(".select1").uedSelect({
+                width: 345
+            });
+            $(".select2").uedSelect({
+                width: 167
+            });
+            $(".select3").uedSelect({
+                width: 120
+            });
+        });
+        function submitform(){
+		document.getElementById("submit").submit();
+	    }
+        
+    </script>
+    <script type="text/javascript">
+        function selcity(){
+        var arr = new Array();
+
+		var arr = [,["","东城区","西城区","朝阳区"],["济南","青岛","日照","威海"]];
+		var index = document.getElementById("selID").selectedIndex;
+		var subNode = document.getElementById("subID");
+		var citys = arr[index];		 //coname,ccoid,
+
+		subNode.options.length = 0;   //清空之前选项
+		for(var x=0;x<citys.length;x++){
+			var optNode = document.createElement("option");
+			optNode.innerText = citys[x];
+			optNode.setAttribute("coid","3289")
+			subNode.appendChild(optNode);  //选择添加到子选项中
+		}
+	}
+    </script>
+</head>
+
+<body>
+
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li>
+                <a href="#">学籍查询</a>
+            </li>
+        </ul>
+    </div>
+    <div class="rightinfo">
+        <form action="/" method="post">
+            <ul class="seachform">
+#
+                <li>
+                    <label>学号</label>
+                    <input name="stuid" type="text" class="scinput" />
+                </li>
+                <li>
+                    <label>姓名</label>
+                    <input name="stuname" type="text" class="scinput" />
+                </li>
+                <li>
+                    <label>学院</label>
+                    <div class="vocation">
+                        <select class="select3" id="selID">
+                            #foreach($college in $colleges)
+                            <option name="college"value="$!{college.coId}">$!{college.coName}</option>
+                            #end
+                        </select>
+                    </div>
+                </li>
+
+                <li>
+                    <label>专业</label>
+                    <div class="vocation">
+                        <select class="select3">
+                            <option>计科</option>
+                            <option>软件</option>
+                        </select>
+                    </div>
+                </li>
+
+                <li>
+                    <label>班级</label>
+                    <div class="vocation">
+                        <select class="select3">
+                            <option>全部</option>
+                            <option>其他</option>
+                        </select>
+                    </div>
+                </li>
+
+                <li>
+                    <label>&nbsp;</label>
+                    <input name="submit" type="button" class="scbtn" value="查询" onclick="submitform()" />
+                </li>
+
+            </ul>
+        </form>
+</body>
+
+</html>

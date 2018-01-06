@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.upc.demosys.dao.ClassesMapper" >
+  <resultMap id="BaseResultMap" type="com.upc.demosys.model.Classes" >
+    <constructor >
+      <idArg column="cl_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="cl_num" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="cl_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="m_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cl_id, cl_num, cl_name, m_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from class
+    where cl_id = #{clId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from class
+    where cl_id = #{clId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.upc.demosys.model.Classes" >
+    insert into class (cl_id, cl_num, cl_name, 
+      m_id)
+    values (#{clId,jdbcType=INTEGER}, #{clNum,jdbcType=INTEGER}, #{clName,jdbcType=VARCHAR}, 
+      #{mId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.upc.demosys.model.Classes" >
+    insert into class
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="clId != null" >
+        cl_id,
+      </if>
+      <if test="clNum != null" >
+        cl_num,
+      </if>
+      <if test="clName != null" >
+        cl_name,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="clId != null" >
+        #{clId,jdbcType=INTEGER},
+      </if>
+      <if test="clNum != null" >
+        #{clNum,jdbcType=INTEGER},
+      </if>
+      <if test="clName != null" >
+        #{clName,jdbcType=VARCHAR},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.upc.demosys.model.Classes" >
+    update class
+    <set >
+      <if test="clNum != null" >
+        cl_num = #{clNum,jdbcType=INTEGER},
+      </if>
+      <if test="clName != null" >
+        cl_name = #{clName,jdbcType=VARCHAR},
+      </if>
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cl_id = #{clId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.upc.demosys.model.Classes" >
+    update class
+    set cl_num = #{clNum,jdbcType=INTEGER},
+      cl_name = #{clName,jdbcType=VARCHAR},
+      m_id = #{mId,jdbcType=VARCHAR}
+    where cl_id = #{clId,jdbcType=INTEGER}
+  </update>
+</mapper>
